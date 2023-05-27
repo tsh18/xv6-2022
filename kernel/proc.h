@@ -104,4 +104,8 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
+  int ticks;                   // 执行任务函数所需的cpu时钟中断的次数
+  void (*handler)();           // 需要执行的任务函数
+  int ticks_count;             // 当前中断次数
+  struct trapframe *tmpframe;  // 保存时钟中断前的寄存器状态
 };
